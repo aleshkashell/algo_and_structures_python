@@ -44,9 +44,9 @@ def is_acute(a, b, c):
             leg_1 = b
             leg_2 = c
 
-    if hypotenuse^2 < leg_1^2 + leg_2^2:
+    if hypotenuse**2 < leg_1**2 + leg_2**2:
         print("имеет острые углы")
-    elif hypotenuse^2 > leg_1^2 + leg_2^2:
+    elif hypotenuse**2 > leg_1**2 + leg_2**2:
         print("имеет тупой угол")
     else:
         print("имеет прямой угол")
