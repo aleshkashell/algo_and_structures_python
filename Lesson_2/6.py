@@ -5,3 +5,20 @@
 число, чем то, что загадано. Если за 10 попыток число не отгадано,
 то вывести загаданное число.
 """
+from random import random
+
+if __name__ == '__main__':
+    start = 0
+    end = 100
+    num = int(random() * (int(end) - int(start) + 1) + int(start))
+    print("Угадайте число от 0 до 100")
+    for i in range(0, 11):
+        user_variant = int(input("Ваш вариант: "))
+        if num == user_variant:
+            print("Совершенно верно!")
+            exit(0)
+        elif num < user_variant:
+            print("Загаданное число меньше")
+        else:
+            print("Загаданное число больше")
+    print(f"Вы не отгадали. Было загадано число {num}")
