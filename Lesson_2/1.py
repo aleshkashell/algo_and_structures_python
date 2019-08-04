@@ -9,3 +9,49 @@
 Также сообщать пользователю о невозможности деления на ноль,
 если он ввел 0 в качестве делителя.
 """
+
+
+def check_divisor(num):
+    if num == 0:
+        print("Делимое не может равняться нулю, повторите ввод")
+
+
+def get_num_two(sign):
+    if sign == '/':
+        while True:
+            num = int(input("Введите второе число: "))
+            if num == 0:
+                print("Делимое не может равняться нулю, повторите ввод")
+            else:
+                return num
+    else:
+        return int(input("Введите второе число: "))
+
+
+def is_valid_sign(sign):
+    if sign in ['0', '+', '-', '*', '/']:
+        return True
+    return False
+
+
+if __name__ == '__main__':
+    while True:
+        sign = input("Введите знак операции: ")
+        if not is_valid_sign(sign):
+            print("Введен не корректный знак операции, повторите ввод.")
+            continue
+        if sign == '0':
+            exit(0)
+        num1 = int(input("Введите первое число: "))
+        num2 = get_num_two(sign)
+        if sign == '*':
+            print(f'{num1} * {num2} = {num1 * num2}')
+        elif sign == '/':
+            print(f'{num1} / {num2} = {num1 / num2}')
+        elif sign == '+':
+            print(f'{num1} + {num2} = {num1 + num2}')
+        elif sign == '-':
+            print(f'{num1} - {num2} = {num1 - num2}')
+        else:
+            print("Something went wrong...")
+            exit(1)
