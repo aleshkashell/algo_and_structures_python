@@ -8,7 +8,7 @@ def get_sum(count, divident=1):
     if count == 0:
         return 0
     else:
-        return divident + get_sum(count-1, divident/2)
+        return divident + get_sum(count-1, divident/-2)
 
 
 if __name__ == '__main__':
