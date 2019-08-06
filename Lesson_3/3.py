@@ -6,7 +6,7 @@ from random import randint
 def get_max_index(arr):
     index = 0
     for i in range(0, len(arr)):
-        if arr[index] > arr[i]:
+        if arr[i] > arr[index]:
             index = i
     return index
 
@@ -14,7 +14,7 @@ def get_max_index(arr):
 def get_min_index(arr):
     index = 0
     for i in range(0, len(arr)):
-        if arr[index] < arr[i]:
+        if arr[i] < arr[index]:
             index = i
     return index
 
