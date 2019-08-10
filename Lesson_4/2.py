@@ -5,6 +5,7 @@
 """
 import cProfile
 from timeit import timeit
+import math
 
 
 def get_primes(count):
@@ -27,6 +28,21 @@ def get_primes(count):
     return primes
 
 
+def primes_sieve(limit):
+    a = [True] * int(limit)                          # Initialize the primality list
+    a[0] = a[1] = False
+    primes = list()
+
+    for (i, isprime) in enumerate(a):
+        if isprime:
+            primes.append(i)
+            for n in range(i*i, int(limit), i):     # Mark factors non-prime
+                a[n] = False
+    return primes
+
 
 if __name__ == '__main__':
-    print(get_primes(100))
+    n = 500
+    border = n * math.log(n) * 1.4
+    print(get_primes(n))
+    print(primes_sieve(border))
