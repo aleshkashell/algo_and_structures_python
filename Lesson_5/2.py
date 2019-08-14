@@ -10,14 +10,13 @@ from itertools import zip_longest
 
 
 class HexNum:
-    def __init__(self, text):
+    def __init__(self, text=''):
         self.data = deque([i for i in text])
 
     def __add__(self, other):
-        result = deque()
+        result = HexNum()
         addit = 0
         for a, b in zip_longest(reversed(self.data), reversed(other.data), fillvalue='0'):
-            print(f'a={a}, b={b}')
             digit_sum = int(a, 16) + int(b, 16) + addit
             result.appendleft(f"{digit_sum % 16:X}")
             addit = digit_sum // 16
@@ -25,11 +24,39 @@ class HexNum:
             result.appendleft(f"{addit % 16:X}")
         return result
 
+    def appendleft(self, text_digit):
+        self.data.appendleft(text_digit)
+
+    def __mul__(self, other):
+        result = HexNum()
+        addit = 0
+        for i, a in enumerate(reversed(self.data)):
+            tmp_result = HexNum('0' * i)
+            for b in reversed(other.data):
+                digit_mul = int(a, 16) * int(b, 16) + addit
+                tmp_result.appendleft(f"{digit_mul % 16:X}")
+                addit = digit_mul // 16
+            result = result + tmp_result
+            while addit > 0:
+                result.appendleft(f"{addit % 16:X}")
+                addit = addit // 16
+        return result
+
     def __str__(self):
-        return "".join(self.data)
+        delim = "', '"
+        return f"['{delim.join(self.data)}']"
+
+    def __repr__(self):
+        return self.__str__()
 
 
 if __name__ == '__main__':
-    data1 = HexNum('ffff')
-    data2 = HexNum('ffff')
-    print(data1 + data2)
+    numbers = [HexNum(i) for i in input("Введите шестнадцатиричные числа, разделяя пробелами: ").split()]
+    summ = HexNum()
+    mult = HexNum('1')
+    for i in numbers:
+        summ = summ + i
+        mult = mult * i
+    print(f"Вы ввели следующие числа: {', '.join([str(i) for i in numbers])}")
+    print(f"Их сумма: {summ}")
+    print(f"Из произведение: {mult}")
