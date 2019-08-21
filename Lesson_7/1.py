@@ -17,9 +17,7 @@ def buble_sort(array):
         for j in range(len(array) - i - 1):
             if array[j] > array[j + 1]:
                 changed = True
-                tmp = array[j]
-                array[j] = array[j+1]
-                array[j+1] = tmp
+                array[j], array[j+1] = array[j+1], array[j]
         if changed:
             changed = False
         else:
