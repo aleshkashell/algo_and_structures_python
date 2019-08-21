@@ -24,6 +24,7 @@ def buble_sort(array):
             changed = False
         else:
             break
+    return array
 
 
 def main():
